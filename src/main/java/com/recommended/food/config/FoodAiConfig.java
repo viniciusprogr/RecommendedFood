@@ -4,7 +4,6 @@ import com.recommended.food.service.FoodAiService;
 import com.recommended.food.tools.FoodTools;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.service.AiServices;
-import dev.langchain4j.service.spring.AiService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FoodAiConfig {
 
-    @Value("${gemini.api-key} ")
+    @Value("${gemini.api-key}") // Removido o espaço extra
     private String geminiApiKey;
 
     @Value("${gemini.model}")
@@ -26,13 +25,11 @@ public class FoodAiConfig {
                 .build();
     }
 
-
-    public FoodAiService  foodAiService(GoogleAiGeminiChatModel model, FoodTools foodTools) {
+    @Bean // Adicionado o @Bean obrigatório
+    public FoodAiService foodAiService(GoogleAiGeminiChatModel model, FoodTools foodTools) {
         return AiServices.builder(FoodAiService.class)
                 .chatModel(model)
                 .tools(foodTools)
                 .build();
     }
-
-
 }
