@@ -1,0 +1,8 @@
+$kind: http-request
+name: New Request
+url: http://localhost:8080/api/food
+method: POST
+body:
+  type: json
+  content: qual lanche tem com cheaddar?
+order: 1775589649302
