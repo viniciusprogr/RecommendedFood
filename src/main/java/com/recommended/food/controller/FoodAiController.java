@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/food")
-public class FoodIaController {
+public class FoodAiController {
 
     private final FoodAiService foodAiService;
 
 
-    public FoodIaController(FoodAiService foodAiService) {
+    public FoodAiController(FoodAiService foodAiService) {
         this.foodAiService = foodAiService;
     }
 
     @PostMapping
     public String askAssistant(@RequestBody String userMessage){
-        Result<String> result = foodAiService.handleRequest(userMessage);
+        Result<String> result = foodAiService.handleRequest("usuario123", userMessage);
         return result.content();
     }
 }
