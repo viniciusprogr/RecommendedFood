@@ -17,4 +17,9 @@ public class FoodService {
         }
         return foodRepository.save(entity);
     }
+
+    public FoodEntity getFoodById(Long id) {
+        return foodRepository.findById(id).orElseThrow(() -> new RuntimeException("Não existe um produto cadastrado com o id: " + id));
+        }
+
 }

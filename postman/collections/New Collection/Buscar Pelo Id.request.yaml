@@ -1,0 +1,8 @@
+$kind: http-request
+name: Buscar Pelo Id
+url: http://localhost:8080/food/1
+method: GET
+body:
+  type: json
+  content: ""
+order: 1685920397481381
