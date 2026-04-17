@@ -1,0 +1,5 @@
+$kind: http-request
+name: delete
+url: http://localhost:8080/food/1
+method: DELETE
+order: 2173794263374658

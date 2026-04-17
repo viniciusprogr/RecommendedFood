@@ -8,20 +8,19 @@ import com.recommended.food.mapper.FoodMapper;
 import com.recommended.food.repositories.FoodRepository;
 import com.recommended.food.service.FoodService;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/food")
 @AllArgsConstructor
-public class FoodControler {
+public class FoodController {
 
     private final FoodMapper foodMapper;
 
     private final FoodService foodService;
-    private final FoodRepository foodRepository;
 
     @PostMapping
     public ResponseEntity<ResponseFood> create(@RequestBody RequestFood requestFood){
@@ -36,4 +35,15 @@ public class FoodControler {
         return ResponseEntity.ok(foodMapper.entityToResponse(entity));
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        FoodEntity findedFood = foodService.getFoodById(id);
+        foodService.delete(findedFood);
+    }
+
+    @GetMapping("/findAll")
+    public ResponseEntity<List<ResponseFood>> findAll() {
+        List<FoodEntity> listFood = foodService.findAllFoods();
+        return ResponseEntity.ok(foodMapper.listEntityToListResponse(listFood));
+    }
 }

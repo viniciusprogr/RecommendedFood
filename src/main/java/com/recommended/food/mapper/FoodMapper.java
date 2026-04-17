@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @AllArgsConstructor
 public class FoodMapper {
@@ -21,5 +24,9 @@ public class FoodMapper {
 
     public ResponseFood entityToResponse(FoodEntity savedEntity) {
         return this.modelMapper.map(savedEntity, ResponseFood.class);
+    }
+
+    public List<ResponseFood> listEntityToListResponse(List<FoodEntity> listFood) {
+        return  listFood.stream().map(this::entityToResponse).collect(Collectors.toList());
     }
 }
