@@ -1,0 +1,5 @@
+$kind: http-request
+name: update
+url: http://localhost:8080/
+method: PUT
+order: 1587970996425545
